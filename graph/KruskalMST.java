@@ -3,21 +3,21 @@ package data_structure;
 //Kruskal의 최소 비용 트리 구현
 public class KruskalMST {
 	Edge[] heapEdge;
-	int edgeNumber;
+	int vertexNum;
 	int heapSize;
 	int[] cycleCheck;
 
 	// 정점의 수와 간선의 수를 입력받아 생성자 호출
-	public KruskalMST(int edgeNumber, int vertexNumber) {
-		heapEdge = new Edge[vertexNumber];
-		this.edgeNumber = edgeNumber;
+	public KruskalMST(int vertexNum, int edgeNum) {
+		heapEdge = new Edge[edgeNum];
+		this.vertexNum = vertexNum;
 		heapSize = 0;
 	}
 
 	// 사이클 생성여부를 확인하기 위한 cycle 배열 초기화
 	public void initCycleCheck() {
-		cycleCheck = new int[edgeNumber];
-		for (int i = 0; i < edgeNumber; i++)
+		cycleCheck = new int[vertexNum];
+		for (int i = 0; i < vertexNum; i++)
 			cycleCheck[i] = -1;
 	}
 
@@ -25,7 +25,7 @@ public class KruskalMST {
 	public void kruskalMST() {
 		initCycleCheck();
 		int count = 0;
-		while (count < edgeNumber - 1) {
+		while (count < vertexNum - 1) {
 			Edge temp = deleteEdge();
 			int u1 = find(temp.v1);
 			int u2 = find(temp.v2);
